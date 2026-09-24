@@ -365,7 +365,7 @@ button{font-family:inherit;cursor:pointer}
 
 </div>
 </template>
-<script type="application/json" id="props">{"accent":{"editor":"color","default":"#D4A857","options":["#D4A857","#F26B1D","#E8E2D6","#C9F25A"],"section":"Marca"},"tema":{"editor":"enum","options":["Oscuro","Claro"],"default":"Oscuro","section":"Marca"},"brillo":{"editor":"range","min":0,"max":100,"step":5,"unit":"%","default":100,"section":"Marca"},"fuenteTitulos":{"editor":"enum","options":["Anton","Bebas Neue","Oswald","Archivo Black"],"default":"Anton","section":"Tipografía"},"escalaTitulos":{"editor":"range","min":0.8,"max":1.2,"step":0.05,"default":1,"section":"Tipografía"},"fotoHero":{"editor":"enum","options":["Flexionando","En polea","Sonriendo","Cuerpo entero"],"default":"Flexionando","section":"Hero"},"layoutHero":{"editor":"enum","options":["Foto a la derecha","Centrado","Partido 50/50"],"default":"Centrado","section":"Hero"},"marcaAgua":{"editor":"boolean","default":true,"section":"Hero"},"franja":{"editor":"enum","options":["Relleno","Contorno","Oculta"],"default":"Relleno","section":"Secciones"},"tarjetasServicios":{"editor":"enum","options":["Foto con degradado","Foto arriba","Número grande"],"default":"Foto con degradado","section":"Secciones"},"esquinas":{"editor":"range","min":0,"max":32,"step":2,"unit":"px","default":24,"section":"Secciones"},"densidad":{"editor":"enum","options":["Compacta","Normal","Amplia"],"default":"Normal","section":"Secciones"},"numeroWhatsapp":{"editor":"text","default":"595972682726","section":"Comercial"},"mostrarCoaching":{"editor":"boolean","default":true,"section":"Comercial"},"tarjetaDestacada":{"editor":"enum","options":["Crema","Acento","Oscura con borde"],"default":"Crema","section":"Comercial"},"$preview":{"width":1440,"height":7300}}</script>
+<script type="application/json" id="props">{"accent":{"editor":"color","default":"#D4A857","options":["#D4A857","#F26B1D","#E8E2D6","#C9F25A"],"section":"Marca"},"tema":{"editor":"enum","options":["Oscuro","Claro"],"default":"Oscuro","section":"Marca"},"brillo":{"editor":"range","min":0,"max":100,"step":5,"unit":"%","default":100,"section":"Marca"},"fuenteTitulos":{"editor":"enum","options":["Anton","Bebas Neue","Oswald","Archivo Black"],"default":"Anton","section":"Tipografía"},"escalaTitulos":{"editor":"range","min":0.8,"max":1.2,"step":0.05,"default":1,"section":"Tipografía"},"fotoHero":{"editor":"enum","options":["Flexionando","En polea","Sonriendo","Cuerpo entero"],"default":"En polea","section":"Hero"},"layoutHero":{"editor":"enum","options":["Foto a la derecha","Centrado","Partido 50/50"],"default":"Centrado","section":"Hero"},"marcaAgua":{"editor":"boolean","default":true,"section":"Hero"},"franja":{"editor":"enum","options":["Relleno","Contorno","Oculta"],"default":"Relleno","section":"Secciones"},"tarjetasServicios":{"editor":"enum","options":["Foto con degradado","Foto arriba","Número grande"],"default":"Foto con degradado","section":"Secciones"},"esquinas":{"editor":"range","min":0,"max":32,"step":2,"unit":"px","default":24,"section":"Secciones"},"densidad":{"editor":"enum","options":["Compacta","Normal","Amplia"],"default":"Normal","section":"Secciones"},"numeroWhatsapp":{"editor":"text","default":"595972682726","section":"Comercial"},"mostrarCoaching":{"editor":"boolean","default":true,"section":"Comercial"},"tarjetaDestacada":{"editor":"enum","options":["Crema","Acento","Oscura con borde"],"default":"Crema","section":"Comercial"},"$preview":{"width":1440,"height":7300}}</script>
 
 <style>
 #panel{position:fixed;top:16px;right:16px;z-index:9999;width:300px;max-height:calc(100vh - 32px);overflow:auto;background:#FBF8F2;color:#141413;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.35);font:13px/1.4 'Manrope',system-ui,sans-serif}
@@ -445,11 +445,11 @@ class Component extends DCLogic {
 
     const photos = {
       'Flexionando': { img: 'img/edu-flex.jpg', pos: 'center 20%' },
-      'En polea': { img: 'img/edu-cable.jpg', pos: 'center 30%' },
+      'En polea': { img: 'img/edu-cable.jpg', pos: 'center 4%' },
       'Sonriendo': { img: 'img/edu-sonrisa.jpg', pos: 'center 25%' },
       'Cuerpo entero': { img: 'img/edu-full.jpg', pos: 'center 25%' }
     };
-    const ph = photos[p.fotoHero ?? 'Flexionando'] || photos['Flexionando'];
+    const ph = photos[p.fotoHero ?? 'En polea'] || photos['Flexionando'];
     const lay = p.layoutHero ?? 'Centrado';
     const isCenter = lay === 'Centrado';
     const isSplit = lay === 'Partido 50/50';
