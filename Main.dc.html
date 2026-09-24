@@ -2,9 +2,12 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1440">
-<title>Edu Rodríguez · Fitness, Coaching y Lifestyle</title>
-
+<title>Edu Rodríguez · Sitio web</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo+Black&amp;family=Bebas+Neue&amp;family=Oswald:wght@700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
 <style>
@@ -12,13 +15,8 @@ body{margin:0;font-family:'Manrope',system-ui,sans-serif}
 a{color:inherit;text-decoration:none}a:hover{opacity:.85}
 button{font-family:inherit;cursor:pointer}
 </style>
-<style>html{scroll-behavior:smooth}body{background:#0B0B0C}</style>
-</head>
-<body>
-<div id="app"></div>
-<template id="tpl">
-
-<div style="width: 1440px; min-height: 100vh; margin: 0 auto; background: {{t.bg}}; color: {{t.text}}; font-family: 'Manrope', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden;">
+</helmet>
+<div style="width: 1440px; height: 6080px; background: {{t.bg}}; color: {{t.text}}; font-family: 'Manrope', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden;">
 
 <!-- HERO -->
 <section id="inicio" style="position: relative; flex-shrink: 0; height: 900px; overflow: hidden; background: {{hero.glow}};">
@@ -293,31 +291,8 @@ button{font-family:inherit;cursor:pointer}
 </section>
 
 </div>
-</template>
-<script type="application/json" id="props">{"accent":{"editor":"color","default":"#D4A857","options":["#D4A857","#F26B1D","#E8E2D6","#C9F25A"],"section":"Marca"},"tema":{"editor":"enum","options":["Oscuro","Claro"],"default":"Oscuro","section":"Marca"},"brillo":{"editor":"range","min":0,"max":100,"step":5,"unit":"%","default":100,"section":"Marca"},"fuenteTitulos":{"editor":"enum","options":["Anton","Bebas Neue","Oswald","Archivo Black"],"default":"Anton","section":"Tipografía"},"escalaTitulos":{"editor":"range","min":0.8,"max":1.2,"step":0.05,"default":1,"section":"Tipografía"},"fotoHero":{"editor":"enum","options":["Flexionando","En polea","Sonriendo","Cuerpo entero"],"default":"En polea","section":"Hero"},"layoutHero":{"editor":"enum","options":["Foto a la derecha","Centrado","Partido 50/50"],"default":"Centrado","section":"Hero"},"marcaAgua":{"editor":"boolean","default":true,"section":"Hero"},"franja":{"editor":"enum","options":["Relleno","Contorno","Oculta"],"default":"Relleno","section":"Secciones"},"tarjetasServicios":{"editor":"enum","options":["Foto con degradado","Foto arriba","Número grande"],"default":"Foto con degradado","section":"Secciones"},"esquinas":{"editor":"range","min":0,"max":32,"step":2,"unit":"px","default":24,"section":"Secciones"},"densidad":{"editor":"enum","options":["Compacta","Normal","Amplia"],"default":"Normal","section":"Secciones"},"numeroWhatsapp":{"editor":"text","default":"595971682729","section":"Comercial"},"mostrarCoaching":{"editor":"boolean","default":true,"section":"Comercial"},"tarjetaDestacada":{"editor":"enum","options":["Crema","Acento","Oscura con borde"],"default":"Crema","section":"Comercial"},"$preview":{"width":1440,"height":6080}}</script>
-
-<style>
-#panel{position:fixed;top:16px;right:16px;z-index:9999;width:300px;max-height:calc(100vh - 32px);overflow:auto;background:#FBF8F2;color:#141413;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.35);font:13px/1.4 'Manrope',system-ui,sans-serif}
-#panel header{position:sticky;top:0;background:#141413;color:#F3EEE4;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:800;letter-spacing:.5px}
-#panel header button{background:none;border:1px solid rgba(243,238,228,.35);color:inherit;border-radius:999px;padding:4px 10px;font-size:12px}
-#panel .body{padding:6px 16px 16px}
-#panel h4{margin:14px 0 6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#5C5850}
-#panel label{display:flex;flex-direction:column;gap:6px;margin:10px 0;font-weight:700}
-#panel label.row{flex-direction:row;align-items:center;justify-content:space-between}
-#panel select,#panel input[type=range]{width:100%}
-#panel select{padding:7px 8px;border-radius:8px;border:1px solid rgba(20,20,19,.2);background:#fff;font:inherit}
-#panel .sw{display:flex;gap:8px;align-items:center}
-#panel .sw button{width:28px;height:28px;border-radius:50%;border:2px solid rgba(20,20,19,.15);cursor:pointer}
-#panel .sw button[aria-pressed=true]{border-color:#141413;box-shadow:0 0 0 2px #FBF8F2 inset}
-#panel .val{font-weight:500;color:#5C5850}
-#panel.min .body{display:none}
-</style>
-
-<script>
-class DCLogic { constructor(props){ this.props = props; this.state = {}; } setState(s){ Object.assign(this.state, s); rerender(); } forceUpdate(){ rerender(); } }
-</script>
-<script>
-
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#D4A857","options":["#D4A857","#F26B1D","#E8E2D6","#C9F25A"],"section":"Marca"},"tema":{"editor":"enum","options":["Oscuro","Claro"],"default":"Oscuro","section":"Marca"},"brillo":{"editor":"range","min":0,"max":100,"step":5,"unit":"%","default":100,"section":"Marca"},"fuenteTitulos":{"editor":"enum","options":["Anton","Bebas Neue","Oswald","Archivo Black"],"default":"Anton","section":"Tipografía"},"escalaTitulos":{"editor":"range","min":0.8,"max":1.2,"step":0.05,"default":1,"section":"Tipografía"},"fotoHero":{"editor":"enum","options":["Flexionando","En polea","Sonriendo","Cuerpo entero"],"default":"En polea","section":"Hero"},"layoutHero":{"editor":"enum","options":["Foto a la derecha","Centrado","Partido 50/50"],"default":"Centrado","section":"Hero"},"marcaAgua":{"editor":"boolean","default":true,"section":"Hero"},"franja":{"editor":"enum","options":["Relleno","Contorno","Oculta"],"default":"Relleno","section":"Secciones"},"tarjetasServicios":{"editor":"enum","options":["Foto con degradado","Foto arriba","Número grande"],"default":"Foto con degradado","section":"Secciones"},"esquinas":{"editor":"range","min":0,"max":32,"step":2,"unit":"px","default":24,"section":"Secciones"},"densidad":{"editor":"enum","options":["Compacta","Normal","Amplia"],"default":"Normal","section":"Secciones"},"numeroWhatsapp":{"editor":"text","default":"595971682729","section":"Comercial"},"mostrarCoaching":{"editor":"boolean","default":true,"section":"Comercial"},"tarjetaDestacada":{"editor":"enum","options":["Crema","Acento","Oscura con borde"],"default":"Crema","section":"Comercial"},"$preview":{"width":1440,"height":6080}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
@@ -461,91 +436,6 @@ class Component extends DCLogic {
     return { accent, t, f, hero, ctaGlow, band, r, d, plans, wa, feat, faq, services, showCoaching, showWatermark: p.marcaAgua ?? true };
   }
 }
-
-</script>
-<script>
-const SPEC = JSON.parse(document.getElementById('props').textContent);
-const props = {};
-Object.keys(SPEC).forEach(k => { if (k[0] !== '$') props[k] = SPEC[k].default; });
-const comp = new Component(props);
-const TPL = document.getElementById('tpl');
-const HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
-function look(path, scope){
-  path = path.trim();
-  if (path === 'true') return true; if (path === 'false') return false;
-  if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
-  return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), scope);
-}
-function interp(str, scope){ return str.replace(HOLE, (_, p) => { const v = look(p, scope); return v == null ? '' : String(v); }); }
-function proc(node, scope){
-  if (node.nodeType === 3) { if (node.nodeValue.includes('{{')) node.nodeValue = interp(node.nodeValue, scope); return; }
-  if (node.nodeType !== 1) return;
-  const tag = node.tagName.toLowerCase();
-  if (tag === 'sc-for') {
-    const list = look(node.getAttribute('list').replace(/[{}]/g, ''), scope) || [];
-    const as = node.getAttribute('as') || 'item';
-    const frag = document.createDocumentFragment();
-    list.forEach((it, i) => {
-      const s = Object.assign(Object.create(scope), { [as]: it, $index: i });
-      Array.from(node.childNodes).forEach(c => { const cl = c.cloneNode(true); frag.appendChild(cl); proc(cl, s); });
-    });
-    node.replaceWith(frag); return;
-  }
-  if (tag === 'sc-if') {
-    const v = look(node.getAttribute('value').replace(/[{}]/g, ''), scope);
-    if (!v) { node.remove(); return; }
-    const kids = Array.from(node.childNodes); node.replaceWith(...kids); kids.forEach(k => proc(k, scope)); return;
-  }
-  Array.from(node.attributes).forEach(a => {
-    if (!a.value.includes('{{')) return;
-    if (/^on[A-Z]/.test(a.name) || /^on[a-z]+$/.test(a.name) && a.value.trim().startsWith('{{')) {
-      const fn = look(a.value.replace(/[{}]/g, ''), scope); node.removeAttribute(a.name);
-      if (typeof fn === 'function') node.addEventListener(a.name.slice(2).toLowerCase(), fn); return;
-    }
-    node.setAttribute(a.name, interp(a.value, scope));
-  });
-  Array.from(node.childNodes).forEach(c => proc(c, scope));
-}
-function rerender(){
-  const vals = comp.renderVals();
-  const frag = TPL.content.cloneNode(true);
-  Array.from(frag.childNodes).forEach(c => proc(c, vals));
-  const app = document.getElementById('app'); app.replaceChildren(frag);
-}
-function buildPanel(){
-  const body = document.getElementById('pbody'); let sec = null;
-  Object.keys(SPEC).forEach(k => {
-    if (k[0] === '$') return; const s = SPEC[k];
-    if (s.section && s.section !== sec) { sec = s.section; const h = document.createElement('h4'); h.textContent = sec; body.appendChild(h); }
-    const lab = document.createElement('label');
-    const name = k.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase());
-    const title = document.createElement('span'); title.textContent = name; lab.appendChild(title);
-    const set = v => { props[k] = v; comp.props = props; rerender(); };
-    if (s.editor === 'enum') {
-      const sel = document.createElement('select'); s.options.forEach(o => { const op = document.createElement('option'); op.textContent = o; sel.appendChild(op); });
-      sel.value = s.default; sel.onchange = () => set(sel.value); lab.appendChild(sel);
-    } else if (s.editor === 'range') {
-      const val = document.createElement('span'); val.className = 'val'; title.append(' '); title.appendChild(val);
-      const r = document.createElement('input'); r.type = 'range'; r.min = s.min; r.max = s.max; r.step = s.step || 1; r.value = s.default;
-      const show = () => val.textContent = r.value + (s.unit || (s.max <= 2 ? '×' : '')); show();
-      r.oninput = () => { show(); set(Number(r.value)); }; lab.appendChild(r);
-    } else if (s.editor === 'text') {
-      const inp = document.createElement('input'); inp.type = 'text'; inp.value = s.default || ''; inp.placeholder = 'Ej: 595981123456'; inp.style.cssText = 'padding:7px 8px;border-radius:8px;border:1px solid rgba(20,20,19,.2);font:inherit'; inp.oninput = () => set(inp.value); lab.appendChild(inp);
-    } else if (s.editor === 'boolean') {
-      lab.className = 'row'; const c = document.createElement('input'); c.type = 'checkbox'; c.checked = s.default; c.onchange = () => set(c.checked); lab.appendChild(c);
-    } else if (s.editor === 'color') {
-      const w = document.createElement('div'); w.className = 'sw';
-      const btns = (s.options || []).map(o => { const b = document.createElement('button'); b.type = 'button'; b.style.background = o; b.setAttribute('aria-label', o); b.onclick = () => { pick(o); }; w.appendChild(b); return [o, b]; });
-      const ci = document.createElement('input'); ci.type = 'color'; ci.value = s.default; ci.oninput = () => pick(ci.value); ci.setAttribute('aria-label', 'Color personalizado'); w.appendChild(ci);
-      const pick = o => { btns.forEach(([v, b]) => b.setAttribute('aria-pressed', String(v === o))); ci.value = o; set(o); };
-      btns.forEach(([v, b]) => b.setAttribute('aria-pressed', String(v === s.default)));
-      lab.appendChild(w);
-    }
-    body.appendChild(lab);
-  });
-  document.getElementById('pmin').onclick = e => { const p = document.getElementById('panel'); p.classList.toggle('min'); e.target.textContent = p.classList.contains('min') ? 'Mostrar' : 'Ocultar'; };
-}
-rerender();
 </script>
 </body>
 </html>
