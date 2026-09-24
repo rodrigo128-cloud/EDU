@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=1440">
 <title>Edu Rodríguez · Fitness, Coaching y Lifestyle</title>
+<script>if(Math.min(screen.width,screen.height)<768&&!/escritorio/.test(location.search))location.replace("movil.html"+location.hash)</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo+Black&amp;family=Bebas+Neue&amp;family=Oswald:wght@700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
@@ -27,8 +28,8 @@ button{font-family:inherit;cursor:pointer}
 <div style="position: absolute; right: 0; top: 0; width: 760px; height: 900px; background: {{hero.fade}};"></div>
 </sc-if>
 <sc-if value="{{hero.isCenter}}" hint-placeholder-val="{{false}}">
-<img src="{{hero.img}}" alt="Edu Rodríguez en el gimnasio" style="position: absolute; left: 0; top: 0; width: 1440px; height: 6080px; object-fit: cover; object-position: {{hero.pos}};">
-<div style="position: absolute; left: 0; top: 0; width: 1440px; height: 6080px; background: {{t.heroVeil}};"></div>
+<img src="{{hero.img}}" alt="Edu Rodríguez en el gimnasio" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; object-fit: cover; object-position: {{hero.pos}};">
+<div style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; background: {{t.heroVeil}};"></div>
 </sc-if>
 <sc-if value="{{hero.isSplit}}" hint-placeholder-val="{{false}}">
 <img src="{{hero.img}}" alt="Edu Rodríguez en el gimnasio" style="position: absolute; right: 80px; top: 124px; width: 560px; height: 720px; object-fit: cover; object-position: {{hero.pos}}; border-radius: {{r.img}};">
@@ -374,11 +375,11 @@ class Component extends DCLogic {
 
     const photos = {
       'Flexionando': { img: 'img/edu-flex.jpg', pos: 'center 20%' },
-      'En polea': { img: 'img/edu-cable.jpg', pos: 'center 4%' },
+      'En polea': { img: 'img/edu-cable.jpg', pos: 'center 30%' },
       'Sonriendo': { img: 'img/edu-sonrisa.jpg', pos: 'center 25%' },
       'Cuerpo entero': { img: 'img/edu-full.jpg', pos: 'center 25%' }
     };
-    const ph = photos[p.fotoHero ?? 'En polea'] || photos['Flexionando'];
+    const ph = photos[p.fotoHero ?? 'En polea'] || photos['En polea'];
     const lay = p.layoutHero ?? 'Centrado';
     const isCenter = lay === 'Centrado';
     const isSplit = lay === 'Partido 50/50';

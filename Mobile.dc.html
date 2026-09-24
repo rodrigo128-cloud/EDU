@@ -9,100 +9,116 @@
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo+Black&amp;family=Bebas+Neue&amp;family=Oswald:wght@700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
 <style>
-body{margin:0;background:#0B0B0C;font-family:'Manrope',system-ui,sans-serif}
-a{color:inherit;text-decoration:none}a:hover{opacity:.85}
+body{margin:0;font-family:'Manrope',system-ui,sans-serif;-webkit-text-size-adjust:100%}
+*{-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer}
+img{display:block;max-width:100%}
+section{scroll-margin-top:64px}
+.hscroll{scrollbar-width:none}
+.hscroll::-webkit-scrollbar{display:none}
+@media (max-width:359px){.nav-cta{display:none !important}}
 </style>
 </helmet>
-<div style="width: 390px; height: 6780px; background: #0B0B0C; color: #F4F1EA; font-family: 'Manrope', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden;">
+<div style="width: 390px; height: 6780px; background: {{t.bg}}; color: {{t.text}}; font-family: 'Manrope', system-ui, sans-serif; display: flex; flex-direction: column; overflow: clip;">
 
-<!-- HERO -->
-<section id="inicio" style="position: relative; flex-shrink: 0; height: 780px; overflow: hidden; background: #0B0B0C;">
-<img src="img/edu-cable.jpg" alt="Edu Rodríguez entrenando en polea" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% center;">
-<div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,12,0.55) 0%, rgba(11,11,12,0.72) 45%, rgba(11,11,12,0.96) 100%);"></div>
-<div style="position: absolute; left: 0; right: 0; top: 118px; text-align: center; font-family: 'Anton', sans-serif; font-size: 250px; line-height: 1; color: rgba(244,241,234,0.09); letter-spacing: -3px; white-space: nowrap;">EDU</div>
-
-<nav aria-label="Principal" style="position: relative; z-index: 3; margin: 16px 16px 0; height: 56px; padding: 0 6px 0 18px; display: flex; align-items: center; justify-content: space-between; background: rgba(21,21,23,0.78); border: 1px solid rgba(255,255,255,0.1); border-radius: 999px;">
-<a href="#inicio" style="display: flex; align-items: center; gap: 8px; font-family: 'Anton', sans-serif; font-size: 19px; letter-spacing: 1px;">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+<!-- NAV (fija) -->
+<nav aria-label="Principal" style="position: sticky; top: 0; z-index: 50; height: 64px; flex-shrink: 0; box-sizing: border-box; padding: 0 12px 0 20px; display: flex; align-items: center; gap: 10px; background: {{t.navBg}}; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid {{t.line}};">
+<a href="#inicio" onClick="{{closeMenu}}" style="flex-grow: 1; display: flex; align-items: center; gap: 8px; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: 19px; letter-spacing: 1px; white-space: nowrap;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
 <span>EDU RODRÍGUEZ</span>
 </a>
-<button onClick="{{toggleMenu}}" aria-label="{{menuLabel}}" aria-expanded="{{menuExpanded}}" style="width: 44px; height: 44px; border-radius: 999px; border: none; background: {{accent}}; color: #0B0B0C; display: flex; align-items: center; justify-content: center;">
-<sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
-</sc-if>
+<a href="#colaboraciones" class="nav-cta" onClick="{{closeMenu}}" style="flex-shrink: 0; height: 44px; padding: 0 16px; display: flex; align-items: center; border-radius: {{r.btn}}; background: {{accent}}; color: #0B0B0C; font-size: 14px; font-weight: 800;">Colaborar</a>
+<button onClick="{{toggleMenu}}" aria-label="Menú" aria-expanded="{{menuExpanded}}" style="flex-shrink: 0; width: 44px; height: 44px; border-radius: {{r.btn}}; border: 1px solid {{t.border}}; background: transparent; color: {{t.text}}; display: flex; align-items: center; justify-content: center;">
 <sc-if value="{{menuClosed}}" hint-placeholder-val="{{true}}">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+</sc-if>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
 </sc-if>
 </button>
-</nav>
 <sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
-<div style="position: absolute; z-index: 4; left: 16px; right: 16px; top: 80px; padding: 12px; border-radius: 24px; background: #151517; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;">
-<a href="#perfil" onClick="{{closeMenu}}" style="padding: 14px 12px; font-size: 17px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.08);">Perfil</a>
-<a href="#servicios" onClick="{{closeMenu}}" style="padding: 14px 12px; font-size: 17px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.08);">Servicios</a>
-<a href="#colaboraciones" onClick="{{closeMenu}}" style="padding: 14px 12px; font-size: 17px; font-weight: 700;">Colaboraciones</a>
-<a href="#contacto" onClick="{{closeMenu}}" style="margin-top: 8px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: {{accent}}; color: #0B0B0C; font-size: 16px; font-weight: 800;">Colaborar</a>
+<div style="position: absolute; left: 0; right: 0; top: 64px; padding: 12px 20px 24px; display: flex; flex-direction: column; background: {{t.bg}}; border-bottom: 1px solid {{t.line}}; box-shadow: 0 24px 40px rgba(0,0,0,0.35);">
+<a href="#perfil" onClick="{{closeMenu}}" style="min-height: 56px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid {{t.line}}; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: 26px;"><span>PERFIL</span><span style="color: {{t.accentText}}; font-size: 16px;">01</span></a>
+<a href="#servicios" onClick="{{closeMenu}}" style="min-height: 56px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid {{t.line}}; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: 26px;"><span>SERVICIOS</span><span style="color: {{t.accentText}}; font-size: 16px;">02</span></a>
+<a href="#colaboraciones" onClick="{{closeMenu}}" style="min-height: 56px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid {{t.line}}; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: 26px;"><span>COLABORACIONES</span><span style="color: {{t.accentText}}; font-size: 16px;">03</span></a>
+<a href="#contacto" onClick="{{closeMenu}}" style="min-height: 56px; display: flex; align-items: center; justify-content: space-between; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: 26px;"><span>CONTACTO</span><span style="color: {{t.accentText}}; font-size: 16px;">04</span></a>
 </div>
 </sc-if>
+</nav>
 
-<div style="position: absolute; z-index: 2; left: 20px; right: 20px; top: 190px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px;">
-<div style="display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; color: {{accent}};">
+<!-- HERO -->
+<section id="inicio" style="position: relative; flex-shrink: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; background: {{hero.glow}};">
+<img src="{{hero.img}}" alt="Edu Rodríguez en el gimnasio" style="position: absolute; left: 0; top: 0; width: 100%; height: 500px; object-fit: cover; object-position: {{hero.pos}};">
+<div style="position: absolute; left: 0; top: 0; width: 100%; height: 500px; background: {{hero.veil}};"></div>
+<sc-if value="{{showWatermark}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 0; right: 0; top: 96px; text-align: center; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.wm1}}; line-height: 1; color: {{t.wm}}; letter-spacing: -2px; white-space: nowrap;">EDU</div>
+</sc-if>
+<div style="position: relative; z-index: 2; padding: 330px 20px 32px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px;">
+<div style="display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: {{t.accentText}};">
 <span style="width: 24px; height: 2px; background: {{accent}};"></span>
 <span>MEDIA KIT 2026 · @EDU_RODRIGUEZM</span>
 </div>
-<h1 style="margin: 0; font-family: 'Anton', sans-serif; font-weight: 400; font-size: 52px; line-height: 0.98;">TRANSFORMACIÓN<br>FÍSICA <span style="color: {{accent}};">REAL.</span></h1>
-<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #C9C4BA;">Atleta, coach y creador de contenido. Entrenamiento personalizado presencial y online, con un enfoque 1:1 orientado a resultados sostenibles.</p>
+<h1 style="margin: 0; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.h1}}; line-height: 0.95; letter-spacing: -0.5px;">TRANSFORMACIÓN<br>FÍSICA <span style="color: {{t.accentText}};">REAL.</span></h1>
+<p style="margin: 0; max-width: 340px; font-size: 16px; line-height: 1.6; color: {{t.body}};">Atleta, coach y creador de contenido. Entrenamiento personalizado presencial y online, con un enfoque 1:1 orientado a resultados sostenibles.</p>
 <div style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
-<a href="{{wa.general}}" style="height: 54px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; background: {{accent}}; color: #0B0B0C; font-size: 16px; font-weight: 800;">
+<a href="{{wa.general}}" style="height: 56px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: {{r.btn}}; background: {{accent}}; color: #0B0B0C; font-size: 16px; font-weight: 800;">
 <span>Empezá tu cambio</span>
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg>
 </a>
-<a href="#colaboraciones" style="height: 54px; display: flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid rgba(244,241,234,0.28); background: rgba(11,11,12,0.35); font-size: 16px; font-weight: 700;">Soy una marca</a>
+<a href="#colaboraciones" style="height: 56px; display: flex; align-items: center; justify-content: center; border-radius: {{r.btn}}; border: 1px solid {{t.border}}; background: {{t.tagBg}}; font-size: 16px; font-weight: 700;">Soy una marca</a>
 </div>
 <div style="display: flex; align-items: center; gap: 12px;">
 <div style="display: flex;">
-<img src="img/edu-sonrisa.jpg" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: center 20%; border: 2px solid #0B0B0C;">
-<img src="img/edu-pose.jpg" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: center 20%; border: 2px solid #0B0B0C; margin-left: -12px;">
-<img src="img/edu-flex.jpg" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: center 20%; border: 2px solid #0B0B0C; margin-left: -12px;">
+<img src="img/edu-sonrisa.jpg" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: center 20%; border: 2px solid {{t.bg}};">
+<img src="img/edu-pose.jpg" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: center 20%; border: 2px solid {{t.bg}}; margin-left: -12px;">
+<img src="img/edu-flex.jpg" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: center 20%; border: 2px solid {{t.bg}}; margin-left: -12px;">
 </div>
 <div style="display: flex; flex-direction: column; text-align: left;">
 <span style="font-size: 16px; font-weight: 800;">459.170 visualizaciones</span>
-<span style="font-size: 12px; color: #A8A39A;">en los últimos 90 días</span>
+<span style="font-size: 12px; color: {{t.muted}};">en los últimos 90 días</span>
 </div>
 </div>
 </div>
-
-<div style="position: absolute; z-index: 2; left: 16px; right: 16px; bottom: 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
-<span style="padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(212,168,87,0.45); background: rgba(11,11,12,0.35); font-size: 12px; font-weight: 600;">Entrenamiento 1:1</span>
-<span style="padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(212,168,87,0.45); background: rgba(11,11,12,0.35); font-size: 12px; font-weight: 600;">Presencial</span>
-<span style="padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(212,168,87,0.45); background: rgba(11,11,12,0.35); font-size: 12px; font-weight: 600;">Online</span>
-<span style="padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(212,168,87,0.45); background: rgba(11,11,12,0.35); font-size: 12px; font-weight: 600;">Fitness</span>
-<span style="padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(212,168,87,0.45); background: rgba(11,11,12,0.35); font-size: 12px; font-weight: 600;">Lifestyle</span>
+<div class="hscroll" style="position: relative; z-index: 2; padding: 0 20px 28px; display: flex; gap: 8px; overflow-x: auto;">
+<span style="flex-shrink: 0; padding: 8px 14px; border-radius: {{r.btn}}; border: 1px solid {{t.tagBorder}}; background: {{t.tagBg}}; font-size: 12px; font-weight: 600;">Entrenamiento 1:1</span>
+<span style="flex-shrink: 0; padding: 8px 14px; border-radius: {{r.btn}}; border: 1px solid {{t.tagBorder}}; background: {{t.tagBg}}; font-size: 12px; font-weight: 600;">Presencial</span>
+<span style="flex-shrink: 0; padding: 8px 14px; border-radius: {{r.btn}}; border: 1px solid {{t.tagBorder}}; background: {{t.tagBg}}; font-size: 12px; font-weight: 600;">Online</span>
+<span style="flex-shrink: 0; padding: 8px 14px; border-radius: {{r.btn}}; border: 1px solid {{t.tagBorder}}; background: {{t.tagBg}}; font-size: 12px; font-weight: 600;">Fitness</span>
+<span style="flex-shrink: 0; padding: 8px 14px; border-radius: {{r.btn}}; border: 1px solid {{t.tagBorder}}; background: {{t.tagBg}}; font-size: 12px; font-weight: 600;">Coaching</span>
+<span style="flex-shrink: 0; padding: 8px 14px; border-radius: {{r.btn}}; border: 1px solid {{t.tagBorder}}; background: {{t.tagBg}}; font-size: 12px; font-weight: 600;">Lifestyle</span>
 </div>
 </section>
 
 <!-- FRANJA -->
-<div style="flex-shrink: 0; height: 56px; background: {{accent}}; color: #0B0B0C; display: flex; align-items: center; gap: 22px; padding: 0 20px; font-family: 'Anton', sans-serif; font-size: 22px; letter-spacing: 1px; white-space: nowrap; overflow: hidden;">
+<sc-if value="{{band.show}}" hint-placeholder-val="{{true}}">
+<div style="flex-shrink: 0; height: 52px; background: {{band.bg}}; color: {{band.color}}; border-top: 2px solid {{accent}}; border-bottom: 2px solid {{accent}}; box-sizing: border-box; display: flex; align-items: center; gap: 20px; padding: 0 20px; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.band}}; letter-spacing: 1px; white-space: nowrap; overflow: hidden;">
 <span>CONTENIDO AUTÉNTICO</span><span>✦</span><span>RESULTADOS REALES</span><span>✦</span><span>COLABORACIONES</span>
 </div>
+</sc-if>
 
 <!-- PERFIL -->
-<section id="perfil" style="flex-shrink: 0; padding: 72px 20px; display: flex; flex-direction: column; gap: 28px; background: #111113;">
+<section id="perfil" style="flex-shrink: 0; padding: 72px 20px; display: flex; flex-direction: column; gap: 28px; background: {{t.bg2}};">
 <div style="display: flex; flex-direction: column; gap: 14px;">
-<span style="font-size: 12px; font-weight: 700; letter-spacing: 3px; color: {{accent}};">01 / PERFIL</span>
-<h2 style="margin: 0; font-family: 'Anton', sans-serif; font-weight: 400; font-size: 42px; line-height: 1.02;">QUIÉN SOY: ATLETA, COACH Y <span style="color: {{accent}};">CREADOR DE CONTENIDO</span></h2>
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 3px; color: {{t.accentText}};">01 / PERFIL</span>
+<h2 style="margin: 0; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.h2}}; line-height: 1;">QUIÉN SOY: ATLETA, COACH Y <span style="color: {{t.accentText}};">CREADOR DE CONTENIDO</span></h2>
 </div>
-<div style="display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.7; color: #C9C4BA;">
+<div style="display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.7; color: {{t.body}};">
 <p style="margin: 0;">Edu Rodríguez es atleta, coach y creador de contenido enfocado en la transformación física real. Crea contenido de valor dentro del mundo del entrenamiento y el cuidado personal, conectando con su audiencia desde la experiencia, la constancia y resultados auténticos.</p>
 <p style="margin: 0;">Ofrece entrenamiento personalizado presencial y online, con un enfoque 1:1 orientado a resultados sostenibles y a un cambio integral en cada persona.</p>
 </div>
-<div style="position: relative; height: 460px; border-radius: 28px; overflow: hidden;">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+<div style="padding: 18px; border-radius: {{r.card}}; background: {{t.card}}; border: 1px solid {{t.line}}; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.stat}}; line-height: 1;">459.170</span><span style="font-size: 13px; color: {{t.muted}};">Visualizaciones</span></div>
+<div style="padding: 18px; border-radius: {{r.card}}; background: {{t.card}}; border: 1px solid {{t.line}}; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.stat}}; line-height: 1;">74.565</span><span style="font-size: 13px; color: {{t.muted}};">Alcance</span></div>
+<div style="padding: 18px; border-radius: {{r.card}}; background: {{t.card}}; border: 1px solid {{t.line}}; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.stat}}; line-height: 1;">7.441</span><span style="font-size: 13px; color: {{t.muted}};">Interacciones</span></div>
+<div style="padding: 18px; border-radius: {{r.card}}; background: {{t.card}}; border: 1px solid {{t.line}}; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.stat}}; line-height: 1; color: {{t.accentText}};">90 días</span><span style="font-size: 13px; color: {{t.muted}};">Período medido</span></div>
+</div>
+<div style="position: relative; height: 460px; border-radius: {{r.img}}; overflow: hidden;">
 <img src="img/edu-flex.jpg" alt="Edu Rodríguez flexionando el bíceps en el gimnasio" style="width: 100%; height: 100%; object-fit: cover; object-position: center 22%;">
-<span style="position: absolute; top: 16px; right: 16px; padding: 10px 16px; border-radius: 999px; background: {{accent}}; color: #0B0B0C; font-size: 13px; font-weight: 800;">Presencial + Online</span>
-<div style="position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 18px 20px; border-radius: 20px; background: rgba(11,11,12,0.82); display: flex; flex-direction: column; gap: 6px;">
-<span style="font-family: 'Anton', sans-serif; font-size: 24px; line-height: 1.08;">AYUDO A MARCAS A CONECTAR CON UNA AUDIENCIA REAL.</span>
+<div style="position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 18px; border-radius: {{r.card}}; background: rgba(11,11,12,0.82); color: #F4F1EA; display: flex; flex-direction: column; gap: 6px;">
+<span style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.card}}; line-height: 1.05;">AYUDO A MARCAS A CONECTAR CON UNA AUDIENCIA REAL.</span>
 <span style="font-size: 14px; color: #C9C4BA;">Contenido auténtico, experiencia y crecimiento orgánico.</span>
 </div>
 </div>
@@ -111,157 +127,269 @@ button{font-family:inherit;cursor:pointer}
 <!-- SERVICIOS -->
 <section id="servicios" style="flex-shrink: 0; padding: 72px 0; display: flex; flex-direction: column; gap: 28px;">
 <div style="padding: 0 20px; display: flex; flex-direction: column; gap: 14px;">
-<span style="font-size: 12px; font-weight: 700; letter-spacing: 3px; color: {{accent}};">SERVICIOS</span>
-<h2 style="margin: 0; font-family: 'Anton', sans-serif; font-weight: 400; font-size: 42px; line-height: 1.02;">ENTRENAMIENTO Y CONTENIDO <span style="color: {{accent}};">A TU MEDIDA</span></h2>
-<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #C9C4BA;">Del cambio físico personal a campañas para marcas: un mismo método basado en la constancia y en resultados auténticos.</p>
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 3px; color: {{t.accentText}};">SERVICIOS</span>
+<h2 style="margin: 0; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.h2}}; line-height: 1;">ENTRENAMIENTO Y CONTENIDO <span style="color: {{t.accentText}};">A TU MEDIDA</span></h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; color: {{t.body}};">Del cambio físico personal a campañas para marcas: un mismo método basado en la constancia y en resultados auténticos.</p>
 </div>
-<div style="display: flex; gap: 14px; padding: 0 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;">
+<div class="hscroll" style="display: flex; gap: 14px; padding: 0 20px 4px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 20px;">
 <sc-for list="{{services}}" as="s" hint-placeholder-count="4">
-<article style="position: relative; flex-shrink: 0; width: 290px; height: 400px; border-radius: 24px; overflow: hidden; background: #151517; scroll-snap-align: start;">
+<article style="position: relative; flex-shrink: 0; width: 78%; height: 440px; box-sizing: border-box; scroll-snap-align: start; border-radius: {{r.card}}; overflow: hidden; background: {{t.card}}; border: 1px solid {{t.line}}; display: flex; flex-direction: column;">
+<sc-if value="{{s.grad}}" hint-placeholder-val="{{true}}">
 <img src="{{s.img}}" alt="{{s.title}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{s.pos}};">
-<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 240px; background: linear-gradient(0deg, rgba(11,11,12,0.96) 15%, rgba(11,11,12,0) 100%);"></div>
-<div style="position: absolute; left: 20px; right: 20px; bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 250px; background: linear-gradient(0deg, rgba(11,11,12,0.95) 10%, rgba(11,11,12,0) 100%);"></div>
+<div style="position: absolute; left: 18px; right: 18px; bottom: 18px; display: flex; flex-direction: column; gap: 8px; color: #F4F1EA;">
 <span style="font-size: 11px; font-weight: 700; letter-spacing: 2px; color: {{accent}};">{{s.tag}}</span>
-<h3 style="margin: 0; font-family: 'Anton', sans-serif; font-weight: 400; font-size: 26px; line-height: 1.05;">{{s.title}}</h3>
+<h3 style="margin: 0; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.card}}; line-height: 1.05;">{{s.title}}</h3>
 <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #C9C4BA;">{{s.text}}</p>
 </div>
+</sc-if>
+<sc-if value="{{s.top}}" hint-placeholder-val="{{false}}">
+<img src="{{s.img}}" alt="{{s.title}}" style="width: 100%; height: 240px; object-fit: cover; object-position: {{s.pos}};">
+<div style="flex-grow: 1; padding: 18px; display: flex; flex-direction: column; gap: 8px;">
+<span style="font-size: 11px; font-weight: 700; letter-spacing: 2px; color: {{t.accentText}};">{{s.tag}}</span>
+<h3 style="margin: 0; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.card}}; line-height: 1.05;">{{s.title}}</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.55; color: {{t.body}};">{{s.text}}</p>
+</div>
+</sc-if>
+<sc-if value="{{s.num}}" hint-placeholder-val="{{false}}">
+<div style="flex-grow: 1; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.num}}; line-height: 0.9; color: {{t.accentText}};">{{s.n}}</span>
+<span style="margin-top: auto; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: {{t.muted}};">{{s.tag}}</span>
+<h3 style="margin: 0; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.card}}; line-height: 1.05;">{{s.title}}</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.55; color: {{t.body}};">{{s.text}}</p>
+</div>
+</sc-if>
 </article>
 </sc-for>
 </div>
-<div style="padding: 0 20px; display: flex; align-items: center; gap: 10px; font-size: 13px; color: #A8A39A;">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-<span>Deslizá para ver los 4 servicios</span>
+<div style="padding: 0 20px; display: flex; align-items: center; gap: 8px; font-size: 13px; color: {{t.muted}};">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+<span>Deslizá para ver más</span>
 </div>
 </section>
 
 <!-- POR QUÉ -->
-<section style="flex-shrink: 0; padding: 72px 20px; display: flex; flex-direction: column; gap: 24px; background: #111113;">
+<section style="flex-shrink: 0; padding: 72px 20px; display: flex; flex-direction: column; gap: 24px; background: {{t.bg2}};">
 <div style="display: flex; flex-direction: column; gap: 14px;">
-<span style="font-size: 12px; font-weight: 700; letter-spacing: 3px; color: {{accent}};">DIFERENCIAL</span>
-<h2 style="margin: 0; font-family: 'Anton', sans-serif; font-weight: 400; font-size: 42px; line-height: 1.02;">¿POR QUÉ TRABAJAR <span style="color: {{accent}};">CONMIGO?</span></h2>
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 3px; color: {{t.accentText}};">DIFERENCIAL</span>
+<h2 style="margin: 0; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.h2}}; line-height: 1;">¿POR QUÉ TRABAJAR <span style="color: {{t.accentText}};">CONMIGO?</span></h2>
 </div>
-<div style="position: relative; height: 380px; border-radius: 28px; overflow: hidden;">
-<img src="img/edu-pose.jpg" alt="Edu Rodríguez con las manos en la cintura junto al rack de mancuernas" style="width: 100%; height: 100%; object-fit: cover; object-position: center 22%;">
-<div style="position: absolute; top: 16px; left: 16px; padding: 8px 14px; border-radius: 999px; background: rgba(11,11,12,0.8); font-size: 13px; font-weight: 700;">@EDU_RODRIGUEZM</div>
+<div style="position: relative; height: 400px; border-radius: {{r.img}}; overflow: hidden;">
+<img src="img/edu-pose.jpg" alt="Edu Rodríguez con las manos en la cintura junto al rack de mancuernas" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
+<div style="position: absolute; top: 14px; left: 14px; padding: 8px 14px; border-radius: {{r.btn}}; background: rgba(11,11,12,0.8); color: #F4F1EA; font-size: 13px; font-weight: 700;">@EDU_RODRIGUEZM</div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 10px;">
 <sc-for list="{{faq}}" as="q" hint-placeholder-count="4">
-<div style="border-radius: 20px; background: {{q.bg}}; border: 1px solid rgba(255,255,255,0.1);">
-<button onClick="{{q.toggle}}" aria-expanded="{{q.expanded}}" style="width: 100%; min-height: 64px; padding: 0 18px; display: flex; align-items: center; gap: 14px; border: none; background: transparent; color: #F4F1EA; text-align: left;">
-<span style="font-family: 'Anton', sans-serif; font-size: 17px; color: {{accent}};">{{q.num}}</span>
+<div style="border-radius: {{r.card}}; background: {{q.bg}}; border: 1px solid {{t.line}};">
+<button onClick="{{q.toggle}}" aria-expanded="{{q.expanded}}" style="width: 100%; min-height: 64px; padding: 0 18px; display: flex; align-items: center; gap: 14px; border: none; background: transparent; color: {{t.text}}; text-align: left;">
+<span style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: 17px; color: {{t.accentText}};">{{q.num}}</span>
 <span style="flex-grow: 1; font-size: 17px; font-weight: 700;">{{q.title}}</span>
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="transform: {{q.rot}};"><path d="M6 9l6 6 6-6"></path></svg>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; transform: {{q.rot}};"><path d="M6 9l6 6 6-6"></path></svg>
 </button>
 <sc-if value="{{q.open}}" hint-placeholder-val="{{false}}">
-<p style="margin: 0; padding: 0 18px 20px 18px; font-size: 15px; line-height: 1.65; color: #C9C4BA;">{{q.text}}</p>
+<p style="margin: 0; padding: 0 18px 20px 49px; font-size: 15px; line-height: 1.65; color: {{t.body}};">{{q.text}}</p>
 </sc-if>
 </div>
 </sc-for>
 </div>
-<div style="padding: 24px; border-radius: 24px; background: {{accent}}; color: #0B0B0C; display: flex; flex-direction: column; gap: 18px;">
-<span style="font-family: 'Anton', sans-serif; font-size: 28px; line-height: 1.05;">RESULTADOS SOSTENIBLES, CAMBIO INTEGRAL.</span>
-<a href="{{wa.general}}" style="height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #0B0B0C; color: #F4F1EA; font-size: 15px; font-weight: 800;">Quiero empezar</a>
+<div style="padding: 22px; border-radius: {{r.card}}; background: {{accent}}; color: #0B0B0C; display: flex; flex-direction: column; gap: 16px;">
+<span style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.card}}; line-height: 1.05;">RESULTADOS SOSTENIBLES, CAMBIO INTEGRAL.</span>
+<a href="{{wa.general}}" style="height: 52px; display: flex; align-items: center; justify-content: center; border-radius: {{r.btn}}; background: #0B0B0C; color: #F4F1EA; font-size: 15px; font-weight: 800;">Quiero empezar</a>
 </div>
 </section>
 
 <!-- COLABORACIONES -->
-<section id="colaboraciones" style="flex-shrink: 0; padding: 72px 20px; display: flex; flex-direction: column; gap: 24px; background: #111113;">
+<section id="colaboraciones" style="flex-shrink: 0; padding: 72px 20px; display: flex; flex-direction: column; gap: 24px;">
 <div style="display: flex; flex-direction: column; gap: 14px;">
-<span style="font-size: 12px; font-weight: 700; letter-spacing: 3px; color: {{accent}};">03 / COLABORACIONES</span>
-<h2 style="margin: 0; font-family: 'Anton', sans-serif; font-weight: 400; font-size: 42px; line-height: 1.02;">PROPUESTA <span style="color: {{accent}};">COMERCIAL</span></h2>
-<p style="margin: 0; font-size: 16px; color: #C9C4BA;">Una propuesta clara, adaptable y pensada para generar resultados.</p>
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 3px; color: {{t.accentText}};">03 / COLABORACIONES</span>
+<h2 style="margin: 0; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.h2}}; line-height: 1;">PROPUESTA <span style="color: {{t.accentText}};">COMERCIAL</span></h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: {{t.body}};">Una propuesta clara, adaptable y pensada para generar resultados.</p>
 </div>
 
-<div style="padding: 28px 24px; border-radius: 28px; background: #F3EEE4; color: #141413; display: flex; flex-direction: column; gap: 20px;">
-<span style="align-self: flex-start; padding: 6px 14px; border-radius: 999px; background: #141413; color: {{accent}}; font-size: 11px; font-weight: 800; letter-spacing: 1px;">PARA MARCAS</span>
+<div style="padding: 24px; border-radius: {{r.img}}; background: {{feat.bg}}; color: {{feat.text}}; border: {{feat.border}}; display: flex; flex-direction: column; gap: 20px;">
+<span style="align-self: flex-start; padding: 6px 12px; border-radius: {{r.btn}}; background: {{feat.badgeBg}}; color: {{feat.badgeText}}; font-size: 11px; font-weight: 800; letter-spacing: 1px;">PARA MARCAS</span>
 <div style="display: flex; flex-direction: column; gap: 6px;">
-<span style="font-size: 21px; font-weight: 800;">Contenido para la marca</span>
-<span style="font-size: 14px; color: #5C5850;">Campaña en Instagram</span>
+<span style="font-size: 20px; font-weight: 800;">Contenido para la marca</span>
+<span style="font-size: 14px; color: {{feat.muted}};">Campaña en Instagram</span>
 </div>
 <div style="display: flex; flex-direction: column; gap: 4px;">
-<span style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #5C5850;">INVERSIÓN</span>
-<span style="font-family: 'Anton', sans-serif; font-size: 40px; line-height: 1;">A CONSULTAR</span>
-<span style="font-size: 14px; color: #5C5850;">Cotización según los objetivos de tu marca</span>
+<span style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: {{feat.muted}};">INVERSIÓN</span>
+<span style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.priceBig}}; line-height: 1;">A CONSULTAR</span>
+<span style="font-size: 14px; color: {{feat.muted}};">Cotización según los objetivos de tu marca</span>
 </div>
-<div style="height: 1px; background: rgba(20,20,19,0.14);"></div>
+<div style="height: 1px; background: {{feat.line}};"></div>
 <div style="display: flex; flex-direction: column; gap: 14px; font-size: 15px;">
-<div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 800;">✓ 1 Reel (posteo)</span><span style="font-size: 14px; color: #5C5850; padding-left: 20px;">Contenido publicado en formato Reel</span></div>
-<div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 800;">✓ + 2 Historias</span><span style="font-size: 14px; color: #5C5850; padding-left: 20px;">Contenido complementario para la campaña</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 800;">✓ 1 Reel (posteo)</span><span style="font-size: 14px; color: {{feat.muted}}; padding-left: 20px;">Contenido publicado en formato Reel</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 800;">✓ + 2 Historias</span><span style="font-size: 14px; color: {{feat.muted}}; padding-left: 20px;">Contenido complementario para la campaña</span></div>
 </div>
-<a href="{{wa.marca}}" style="height: 52px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; background: #141413; color: #F3EEE4; font-size: 15px; font-weight: 800;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-4.6A9 9 0 1 1 8 19.6L3 21z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-1.5-1-2-2l1-1-1-2L9 9.5z"></path></svg><span>Cotizar por WhatsApp</span></a>
+<a href="{{wa.marca}}" style="height: 54px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: {{r.btn}}; background: {{feat.btnBg}}; color: {{feat.btnText}}; font-size: 15px; font-weight: 800;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-4.6A9 9 0 1 1 8 19.6L3 21z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-1.5-1-2-2l1-1-1-2L9 9.5z"></path></svg><span>Cotizar por WhatsApp</span></a>
 </div>
 
-<div style="padding: 28px 24px; border-radius: 28px; background: #151517; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 18px;">
+<sc-if value="{{showCoaching}}" hint-placeholder-val="{{true}}">
+<div style="padding: 24px; border-radius: {{r.img}}; background: {{t.card}}; border: 1px solid {{t.line}}; display: flex; flex-direction: column; gap: 18px;">
 <div style="display: flex; flex-direction: column; gap: 6px;">
-<span style="font-size: 21px; font-weight: 800;">Coaching presencial</span>
-<span style="font-size: 14px; color: #A8A39A;">Entrenamiento personalizado 1:1</span>
+<span style="font-size: 20px; font-weight: 800;">Coaching presencial</span>
+<span style="font-size: 14px; color: {{t.muted}};">Entrenamiento personalizado 1:1</span>
 </div>
-<div style="display: flex; flex-direction: column; gap: 6px;"><span style="font-family: 'Anton', sans-serif; font-size: 34px; line-height: 1;">A CONSULTAR</span><span style="font-size: 14px; color: #A8A39A;">Plan y precio personalizados por WhatsApp</span></div>
-<div style="height: 1px; background: rgba(255,255,255,0.1);"></div>
-<div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: #C9C4BA;">
+<div style="display: flex; flex-direction: column; gap: 6px;"><span style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.price}}; line-height: 1;">A CONSULTAR</span><span style="font-size: 14px; color: {{t.muted}};">Plan y precio personalizados por WhatsApp</span></div>
+<div style="height: 1px; background: {{t.line}};"></div>
+<div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: {{t.body}};">
 <span>✓ Sesiones 1:1 en el gimnasio</span>
 <span>✓ Plan orientado a resultados sostenibles</span>
 <span>✓ Acompañamiento para un cambio integral</span>
 </div>
-<a href="{{wa.presencial}}" style="height: 52px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; border: 1px solid rgba(244,241,234,0.28); font-size: 15px; font-weight: 800;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-4.6A9 9 0 1 1 8 19.6L3 21z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-1.5-1-2-2l1-1-1-2L9 9.5z"></path></svg><span>Consultar por WhatsApp</span></a>
+<a href="{{wa.presencial}}" style="height: 52px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: {{r.btn}}; border: 1px solid {{t.border}}; font-size: 15px; font-weight: 800;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-4.6A9 9 0 1 1 8 19.6L3 21z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-1.5-1-2-2l1-1-1-2L9 9.5z"></path></svg><span>Consultar por WhatsApp</span></a>
 </div>
 
-<div style="padding: 28px 24px; border-radius: 28px; background: #151517; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 18px;">
+<div style="padding: 24px; border-radius: {{r.img}}; background: {{t.card}}; border: 1px solid {{t.line}}; display: flex; flex-direction: column; gap: 18px;">
 <div style="display: flex; flex-direction: column; gap: 6px;">
-<span style="font-size: 21px; font-weight: 800;">Coaching online</span>
-<span style="font-size: 14px; color: #A8A39A;">Seguimiento 1:1 a distancia</span>
+<span style="font-size: 20px; font-weight: 800;">Coaching online</span>
+<span style="font-size: 14px; color: {{t.muted}};">Seguimiento 1:1 a distancia</span>
 </div>
-<div style="display: flex; flex-direction: column; gap: 6px;"><span style="font-family: 'Anton', sans-serif; font-size: 34px; line-height: 1;">A CONSULTAR</span><span style="font-size: 14px; color: #A8A39A;">Plan y precio personalizados por WhatsApp</span></div>
-<div style="height: 1px; background: rgba(255,255,255,0.1);"></div>
-<div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: #C9C4BA;">
+<div style="display: flex; flex-direction: column; gap: 6px;"><span style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.price}}; line-height: 1;">A CONSULTAR</span><span style="font-size: 14px; color: {{t.muted}};">Plan y precio personalizados por WhatsApp</span></div>
+<div style="height: 1px; background: {{t.line}};"></div>
+<div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: {{t.body}};">
 <span>✓ Plan personalizado online</span>
 <span>✓ Enfoque 1:1 orientado a resultados</span>
 <span>✓ Constancia y hábitos sostenibles</span>
 </div>
-<a href="{{wa.online}}" style="height: 52px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; border: 1px solid rgba(244,241,234,0.28); font-size: 15px; font-weight: 800;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-4.6A9 9 0 1 1 8 19.6L3 21z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-1.5-1-2-2l1-1-1-2L9 9.5z"></path></svg><span>Consultar por WhatsApp</span></a>
+<a href="{{wa.online}}" style="height: 52px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: {{r.btn}}; border: 1px solid {{t.border}}; font-size: 15px; font-weight: 800;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-4.6A9 9 0 1 1 8 19.6L3 21z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-1.5-1-2-2l1-1-1-2L9 9.5z"></path></svg><span>Consultar por WhatsApp</span></a>
 </div>
-<p style="margin: 0; text-align: center; font-size: 14px; line-height: 1.6; color: #A8A39A;">Las colaboraciones pueden adaptarse a los objetivos y necesidades de cada marca.</p>
+</sc-if>
+<p style="margin: 0; text-align: center; font-size: 14px; line-height: 1.6; color: {{t.muted}};">Las colaboraciones pueden adaptarse a los objetivos y necesidades de cada marca.</p>
 </section>
 
 <!-- CTA + FOOTER -->
-<section id="contacto" style="flex-grow: 1; position: relative; overflow: hidden; display: flex; flex-direction: column; background: radial-gradient(360px 260px at 50% 0%, rgba(212,168,87,0.22), rgba(212,168,87,0) 70%), #0B0B0C;">
-<div style="padding: 88px 20px 56px; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center;">
-<h2 style="margin: 0; font-family: 'Anton', sans-serif; font-weight: 400; font-size: 48px; line-height: 1;">¿LISTO PARA <span style="color: {{accent}};">CRECER JUNTOS?</span></h2>
-<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #C9C4BA;">Si querés transformar tu físico o conectar tu marca con una audiencia real, escribime. Contenido auténtico, resultados reales y colaboraciones a la medida de tus objetivos.</p>
+<section id="contacto" style="flex-grow: 1; position: relative; overflow: hidden; display: flex; flex-direction: column; background: {{ctaGlow}};">
+<div style="padding: 80px 20px 56px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center;">
+<h2 style="margin: 0; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.cta}}; line-height: 1;">¿LISTO PARA <span style="color: {{t.accentText}};">CRECER JUNTOS?</span></h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; color: {{t.body}};">Si querés transformar tu físico o conectar tu marca con una audiencia real, escribime. Contenido auténtico, resultados reales y colaboraciones a la medida de tus objetivos.</p>
 <div style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
-<a href="{{wa.general}}" style="height: 56px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; background: {{accent}}; color: #0B0B0C; font-size: 16px; font-weight: 800;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-4.6A9 9 0 1 1 8 19.6L3 21z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-1.5-1-2-2l1-1-1-2L9 9.5z"></path></svg><span>Escribime por WhatsApp</span></a>
-<a href="https://instagram.com/edu_rodriguezm" style="height: 56px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; border: 1px solid rgba(244,241,234,0.28); font-size: 16px; font-weight: 700;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.5 6.5h.01"></path></svg><span>Instagram @edu_rodriguezm</span></a>
+<a href="{{wa.general}}" style="height: 56px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: {{r.btn}}; background: {{accent}}; color: #0B0B0C; font-size: 16px; font-weight: 800;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-4.6A9 9 0 1 1 8 19.6L3 21z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-1.5-1-2-2l1-1-1-2L9 9.5z"></path></svg><span>Escribime por WhatsApp</span></a>
+<a href="https://instagram.com/edu_rodriguezm" style="height: 56px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: {{r.btn}}; border: 1px solid {{t.border}}; font-size: 16px; font-weight: 700;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.5 6.5h.01"></path></svg><span>Instagram @edu_rodriguezm</span></a>
 </div>
 </div>
-<div style="font-family: 'Anton', sans-serif; font-size: 92px; line-height: 0.9; text-align: center; color: #151517; letter-spacing: -1px; white-space: nowrap;">EDU<br>RODRÍGUEZ</div>
-<footer style="margin-top: auto; padding: 28px 20px 36px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center;">
-<span style="display: flex; align-items: center; gap: 8px; font-family: 'Anton', sans-serif; font-size: 20px; letter-spacing: 1px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>EDU RODRÍGUEZ</span>
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; font-size: 14px; color: #C9C4BA;">
-<a href="#perfil" style="padding: 6px 0;">Perfil</a><a href="#servicios" style="padding: 6px 0;">Servicios</a><a href="#colaboraciones" style="padding: 6px 0;">Colaboraciones</a>
+<sc-if value="{{showWatermark}}" hint-placeholder-val="{{true}}">
+<div style="font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: {{f.wm2}}; line-height: 0.85; text-align: center; color: {{t.wm2}}; white-space: nowrap;">EDU</div>
+</sc-if>
+<footer style="margin-top: auto; padding: 28px 20px 96px; border-top: 1px solid {{t.line}}; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center;">
+<span style="display: flex; align-items: center; gap: 8px; font-family: {{f.family}}; font-weight: {{f.weight}}; font-size: 20px; letter-spacing: 1px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>EDU RODRÍGUEZ</span>
+<div style="display: flex; gap: 20px; font-size: 14px; color: {{t.body}};">
+<a href="#perfil" style="padding: 10px 0;">Perfil</a><a href="#servicios" style="padding: 10px 0;">Servicios</a><a href="#colaboraciones" style="padding: 10px 0;">Colaboraciones</a>
 </div>
+<span style="font-size: 12px; color: {{t.muted}};">Fitness · Coaching · Lifestyle</span>
 </footer>
 </section>
 
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<sc-if value="{{showFab}}" hint-placeholder-val="{{true}}">
+<a href="{{wa.general}}" aria-label="Escribir por WhatsApp" style="position: fixed; right: 16px; bottom: 16px; z-index: 60; width: 58px; height: 58px; border-radius: 50%; background: {{accent}}; color: #0B0B0C; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 28px rgba(0,0,0,0.45);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-4.6A9 9 0 1 1 8 19.6L3 21z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-1.5-1-2-2l1-1-1-2L9 9.5z"></path></svg></a>
+</sc-if>
+
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#D4A857","options":["#D4A857","#F26B1D","#E8E2D6","#C9F25A"]},"numeroWhatsapp":{"editor":"text","default":"595971682729"},"$preview":{"width":390,"height":6780}}'>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#D4A857","options":["#D4A857","#F26B1D","#E8E2D6","#C9F25A"],"section":"Marca"},"tema":{"editor":"enum","options":["Oscuro","Claro"],"default":"Oscuro","section":"Marca"},"brillo":{"editor":"range","min":0,"max":100,"step":5,"unit":"%","default":100,"section":"Marca"},"fuenteTitulos":{"editor":"enum","options":["Anton","Bebas Neue","Oswald","Archivo Black"],"default":"Anton","section":"Tipografía"},"escalaTitulos":{"editor":"range","min":0.8,"max":1.2,"step":0.05,"default":1,"section":"Tipografía"},"fotoHero":{"editor":"enum","options":["Flexionando","En polea","Sonriendo","Cuerpo entero"],"default":"En polea","section":"Hero"},"marcaAgua":{"editor":"boolean","default":true,"section":"Hero"},"franja":{"editor":"enum","options":["Relleno","Contorno","Oculta"],"default":"Relleno","section":"Secciones"},"tarjetasServicios":{"editor":"enum","options":["Foto con degradado","Foto arriba","Número grande"],"default":"Foto con degradado","section":"Secciones"},"esquinas":{"editor":"range","min":0,"max":32,"step":2,"unit":"px","default":24,"section":"Secciones"},"numeroWhatsapp":{"editor":"text","default":"595971682729","section":"Comercial"},"botonWhatsapp":{"editor":"boolean","default":true,"section":"Comercial"},"mostrarCoaching":{"editor":"boolean","default":true,"section":"Comercial"},"tarjetaDestacada":{"editor":"enum","options":["Crema","Acento","Oscura con borde"],"default":"Crema","section":"Comercial"},"$preview":{"width":390,"height":6780}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
     this.state = { open: 0, menu: false };
   }
+  rgb(hex) {
+    const h = String(hex || '#D4A857').replace('#', '');
+    const n = parseInt(h.length === 3 ? h.split('').map((c) => c + c).join('') : h.slice(0, 6), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  rgba(hex, a) {
+    const c = this.rgb(hex);
+    return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')';
+  }
+  darken(hex, k) {
+    const c = this.rgb(hex).map((v) => Math.round(v * (1 - k)));
+    return 'rgb(' + c.join(',') + ')';
+  }
   renderVals() {
     const p = this.props;
     const accent = p.accent ?? '#D4A857';
-    const menuOpen = this.state.menu;
+    const light = (p.tema ?? 'Oscuro') === 'Claro';
+    const glow = (p.brillo ?? 100) / 100;
+    const radius = p.esquinas ?? 24;
+
+    const t = light ? {
+      bg: '#F3EEE4', bg2: '#EAE3D6', card: '#FBF8F2', card2: '#F3EEE4', text: '#141413', body: '#3D3A35', muted: '#5C5850',
+      line: 'rgba(20,20,19,0.12)', border: 'rgba(20,20,19,0.28)',
+      navBg: 'rgba(243,238,228,0.92)', tagBg: 'rgba(251,248,242,0.6)', tagBorder: 'rgba(20,20,19,0.22)',
+      wm: 'rgba(20,20,19,0.08)', wm2: '#E4DCCD', accentText: this.darken(accent, 0.45)
+    } : {
+      bg: '#0B0B0C', bg2: '#111113', card: '#151517', card2: '#1C1C1F', text: '#F4F1EA', body: '#C9C4BA', muted: '#A8A39A',
+      line: 'rgba(255,255,255,0.1)', border: 'rgba(244,241,234,0.28)',
+      navBg: 'rgba(11,11,12,0.82)', tagBg: 'rgba(11,11,12,0.35)', tagBorder: this.rgba(accent, 0.45),
+      wm: 'rgba(244,241,234,0.09)', wm2: '#151517', accentText: accent
+    };
+    const bgRgb = light ? '243,238,228' : '11,11,12';
+
+    const fonts = {
+      'Anton': { family: "'Anton', sans-serif", k: 1, weight: '400' },
+      'Bebas Neue': { family: "'Bebas Neue', sans-serif", k: 1.12, weight: '400' },
+      'Oswald': { family: "'Oswald', sans-serif", k: 0.9, weight: '700' },
+      'Archivo Black': { family: "'Archivo Black', sans-serif", k: 0.64, weight: '400' }
+    };
+    const fo = fonts[p.fuenteTitulos ?? 'Anton'] || fonts['Anton'];
+    const sc = p.escalaTitulos ?? 1;
+    const px = (n, s) => Math.round(n * fo.k * (s ? sc : 1)) + 'px';
+    const f = {
+      family: fo.family, weight: fo.weight,
+      h1: 'min(' + px(54, true) + ', 13.4vw)', h2: 'min(' + px(40, true) + ', 10.5vw)', cta: 'min(' + px(46, true) + ', 11.5vw)', card: px(26, true),
+      stat: px(30), band: px(20), num: px(88), price: px(32), priceBig: px(38),
+      wm1: px(200), wm2: px(170)
+    };
+
+    const photos = {
+      'Flexionando': { img: 'img/edu-flex.jpg', pos: 'center 20%' },
+      'En polea': { img: 'img/edu-cable.jpg', pos: '45% 15%' },
+      'Sonriendo': { img: 'img/edu-sonrisa.jpg', pos: 'center 25%' },
+      'Cuerpo entero': { img: 'img/edu-full.jpg', pos: 'center 25%' }
+    };
+    const ph = photos[p.fotoHero ?? 'En polea'] || photos['En polea'];
+    const hero = {
+      img: ph.img, pos: ph.pos,
+      glow: 'radial-gradient(420px 420px at 50% 60%, ' + this.rgba(accent, (0.3 * glow).toFixed(3)) + ', ' + this.rgba(accent, 0) + ' 70%), ' + t.bg,
+      veil: 'linear-gradient(180deg, rgba(' + bgRgb + ',0) 0%, rgba(' + bgRgb + ',0) 45%, rgba(' + bgRgb + ',0.75) 72%, rgba(' + bgRgb + ',1) 100%)'
+    };
+    const ctaGlow = 'radial-gradient(360px 260px at 50% 0%, ' + this.rgba(accent, (0.22 * glow).toFixed(3)) + ', ' + this.rgba(accent, 0) + ' 70%), ' + t.bg;
+
+    const bandMode = p.franja ?? 'Relleno';
+    const band = {
+      show: bandMode !== 'Oculta',
+      bg: bandMode === 'Relleno' ? accent : 'transparent',
+      color: bandMode === 'Relleno' ? '#0B0B0C' : t.accentText
+    };
+
+    const r = {
+      card: radius + 'px', img: (radius > 0 ? radius + 4 : 0) + 'px',
+      btn: radius <= 6 ? radius + 'px' : '999px'
+    };
+
     const waNum = String(p.numeroWhatsapp ?? '595971682729').replace(/\D/g, '');
     const waLink = (msg) => 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(msg);
     const wa = {
-      general: waLink('Hola Edu, quiero empezar mi cambio.'),
+      general: waLink('Hola Edu, vi tu sitio web y quiero más información.'),
       presencial: waLink('Hola Edu, quiero consultar por el coaching presencial.'),
       online: waLink('Hola Edu, quiero consultar por el coaching online.'),
       marca: waLink('Hola Edu, quiero cotizar una colaboración de contenido para mi marca.')
     };
+
+    const fm = p.tarjetaDestacada ?? 'Crema';
+    const feat = fm === 'Acento' ? {
+      bg: accent, text: '#0B0B0C', muted: 'rgba(11,11,12,0.72)', line: 'rgba(11,11,12,0.18)', border: 'none',
+      badgeBg: '#0B0B0C', badgeText: accent, btnBg: '#0B0B0C', btnText: '#F4F1EA'
+    } : fm === 'Oscura con borde' ? {
+      bg: light ? '#141413' : t.card, text: '#F4F1EA', muted: '#A8A39A', line: 'rgba(255,255,255,0.12)', border: '2px solid ' + accent,
+      badgeBg: accent, badgeText: '#0B0B0C', btnBg: accent, btnText: '#0B0B0C'
+    } : {
+      bg: light ? '#FFFFFF' : '#F3EEE4', text: '#141413', muted: '#5C5850', line: 'rgba(20,20,19,0.14)', border: light ? '1px solid rgba(20,20,19,0.12)' : 'none',
+      badgeBg: '#141413', badgeText: accent, btnBg: '#141413', btnText: '#F3EEE4'
+    };
+
     const open = this.state.open;
     const faqData = [
       { title: 'Contenido auténtico', text: 'Creo contenido de valor dentro del mundo del entrenamiento y el cuidado personal, conectando con mi audiencia desde la experiencia y la constancia.' },
@@ -275,22 +403,30 @@ class Component extends DCLogic {
       open: open === i,
       expanded: open === i ? 'true' : 'false',
       rot: open === i ? 'rotate(180deg)' : 'rotate(0deg)',
-      bg: open === i ? '#1C1C1F' : '#151517',
+      bg: open === i ? t.card2 : t.card,
       toggle: () => this.setState({ open: open === i ? -1 : i })
     }));
+
+    const sMode = p.tarjetasServicios ?? 'Foto con degradado';
     const services = [
       { img: 'img/edu-full.jpg', pos: 'center 30%', tag: 'PRESENCIAL', title: 'Entrenamiento personalizado', text: 'Sesiones 1:1 en el gimnasio, con técnica, progresión y seguimiento.' },
       { img: 'img/edu-sonrisa.jpg', pos: 'center 25%', tag: 'ONLINE', title: 'Coaching online 1:1', text: 'Tu plan y acompañamiento a distancia, estés donde estés.' },
       { img: 'img/edu-flex.jpg', pos: 'center 20%', tag: 'MARCAS', title: 'Contenido para marcas', text: 'Reels e historias auténticas que conectan con una audiencia real.' },
       { img: 'img/edu-pose.jpg', pos: 'center 20%', tag: 'LIFESTYLE', title: 'Fitness y lifestyle', text: 'Constancia, cuidado personal y transformación física real.' }
-    ];
+    ].map((s, i) => ({
+      ...s, n: '0' + (i + 1),
+      grad: sMode === 'Foto con degradado', top: sMode === 'Foto arriba', num: sMode === 'Número grande'
+    }));
+
+    const menu = this.state.menu;
     return {
-      accent, wa, faq, services,
-      menuOpen: menuOpen, menuClosed: !menuOpen,
-      menuLabel: menuOpen ? 'Cerrar menú' : 'Abrir menú',
-      menuExpanded: menuOpen ? 'true' : 'false',
-      toggleMenu: () => this.setState({ menu: !menuOpen }),
-      closeMenu: () => this.setState({ menu: false })
+      accent, t, f, hero, ctaGlow, band, r, wa, feat, faq, services,
+      showCoaching: p.mostrarCoaching ?? true,
+      showWatermark: p.marcaAgua ?? true,
+      showFab: p.botonWhatsapp ?? true,
+      menuOpen: menu, menuClosed: !menu, menuExpanded: menu ? 'true' : 'false',
+      toggleMenu: () => this.setState({ menu: !this.state.menu }),
+      closeMenu: () => { if (this.state.menu) setTimeout(() => this.setState({ menu: false }), 0); }
     };
   }
 }
